@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import Recipe from './Recipe'
 import './App.css';
 
 const App = () => {
 
   const API_KEY = '142b402f15804516a38835cec56b9b54';
 
-  useEffect( () => {
-    
+  const [recipes, setRecipes] = useState([])
+
+
+  useEffect(() => {
+    getRecipes();
   }, [])
-
-  //Refactor using typical fetch request and .then
-  // const getRecipes = async () => {
-  //   const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=${API_KEY}`)
-  //   const data = await response.json();
-  //   console.log(data)
-  //  }
-
-   fetch(`https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=${API_KEY}`)
+  
+  const getRecipes = () => {fetch(`https://api.spoonacular.com/recipes/complexSearch?query=pasta&apiKey=${API_KEY}`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data.results)
+      setRecipes(data.results)
+    })};
+    
 
   return (
     <div className='App'>
@@ -26,6 +27,9 @@ const App = () => {
         <input type="text" className="search-bar"/>
         <button type="submit" className="search-button">Search</button>
       </form>
+      {recipes.map(recipe => (
+        <Recipe key={recipe.title} title={recipe.title} image={recipe.image}/>
+      ))}
     </div>
   )
 }
