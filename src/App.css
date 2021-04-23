@@ -1,6 +1,5 @@
 .App {
   min-height: 100vh;
-  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .search-form {
@@ -14,7 +13,6 @@
   width: 50%;
   border: none;
   padding: 10px;
-
 }
 
 .search-button {
@@ -28,4 +26,19 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.card-image {
+  height: auto;
+  max-height: 250px;
+  width: 18rem;
+  max-width: 300px;
+  align-self: center;
+  padding-top: 20px;
+}
+
+.progress {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: white;
 }

@@ -1,51 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import Recipe from './Recipe'
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SearchForm from "./components/SearchForm";
+import NavBar from "./components/NavBar";
+import RecipeDetails from "./components/RecipeDetails";
+import "bootswatch/dist/slate/bootstrap.min.css";
+import "./App.css";
 
-const App = () => {
-
-  const API_KEY = '142b402f15804516a38835cec56b9b54';
-
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
-  const [query, setQuery] = useState("chicken")
-
-  useEffect(() => {
-    getRecipes();
-  }, [query])
-  
-  const getRecipes = () => {fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${API_KEY}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data.results)
-      setRecipes(data.results)
-    })};
-    
-  const updateSearch = e => {
-    setSearch(e.target.value)
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      query: "",
+    };
   }
 
-  const getSearch = e => {
-    e.preventDefault();
-    console.log(query)
-    setQuery(search)
-    setSearch('')
-  }
-
-  return (
-    <div className='App'>
-      <form className="search-form" onSubmit={getSearch}>
-        <input type="text" className="search-bar" value={search} onChange={updateSearch}/>
-        <button type="submit" className="search-button">Search</button>
-      </form>
-      <div className='recipes'>
-      {recipes.map(recipe => (
-        <Recipe key={recipe.title} title={recipe.title} image={recipe.image}/>
-      ))}
+  searchQuery = (query) => {
+    this.setState({
+      query: query,
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Route exact path="/">
+          <SearchForm searchQuery={this.searchQuery} />
+        </Route>
+        <Route exact path="/recipe/:id" component={RecipeDetails} />
       </div>
-    </div>
-  )
+    );
+  }
 }
 
-
 export default App;
+
+// React Router
+//BrowserRouter Component
+//Route Component
+//Link Component
