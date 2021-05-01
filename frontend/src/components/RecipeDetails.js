@@ -36,6 +36,8 @@ class RecipeDetails extends React.Component {
       });
   }
 
+  postRecipeToDb = () => {};
+
   setRecipeToState = (recipe) => {
     recipe.extendedIngredients.map((ingredient) => {
       console.log(ingredient);
@@ -92,7 +94,10 @@ class RecipeDetails extends React.Component {
                 </ListGroup>
                 <Card.Body>
                   <Card.Link href="#">
-                    <button className="btn btn-primary">
+                    <button
+                      onClick={this.postRecipeToDb()}
+                      className="btn btn-primary"
+                    >
                       Save This Recipe
                     </button>
                   </Card.Link>
