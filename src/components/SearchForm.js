@@ -9,20 +9,13 @@ class SearchForm extends React.Component {
     };
   }
 
-  handleChange(e) {
-    console.log("Changed");
-    //     const searchBar = document.getElementById('search-bar')
-    //     this.setState({
-    //         query: e.target.value
-    //     })
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     const searchBar = document.getElementById("search-bar").value;
     this.setState({
       query: searchBar,
     });
+    e.target.reset();
     // this.props.searchQuery(this.state.query)
   }
 
@@ -49,7 +42,6 @@ class SearchForm extends React.Component {
             class="form-control"
             placeholder="Search"
             id="search-bar"
-            onChange={(e) => this.handleChange(e)}
           />
           <input type="submit" value="Search" className="btn btn-primary" />
         </form>

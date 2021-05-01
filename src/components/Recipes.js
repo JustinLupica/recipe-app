@@ -16,6 +16,10 @@ class Recipes extends React.Component {
     this.fetchRecipes(this.props.query);
   }
 
+  // componentDidUpdate() {
+  //   this.fetchRecipes(this.props.query);
+  // }
+
   fetchRecipes(query, API_KEY) {
     fetch(
       `https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeInformation=true&apiKey=${this.API_KEY}&number=12`

@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import RecipeDetails from "./components/RecipeDetails";
 import "bootswatch/dist/slate/bootstrap.min.css";
 import "./App.css";
+import { connect } from "react-redux";
 
 class App extends React.Component {
   constructor() {
@@ -32,7 +33,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+//export default App;
+
+export default connect(null)(App);
+//same as:
+//const returnedFunction = connect()
+//export default returnedFunction(App)
 
 // React Router
 //BrowserRouter Component
