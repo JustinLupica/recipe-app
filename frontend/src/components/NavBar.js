@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
   render() {
@@ -29,9 +30,9 @@ class NavBar extends React.Component {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  My Recipes
-                </a>
+                <Link to={"/saved_recipes"}>
+                  <a class="nav-link">My Recipes</a>
+                </Link>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

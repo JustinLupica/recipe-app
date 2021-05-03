@@ -6,6 +6,7 @@ import RecipeDetails from "./components/RecipeDetails";
 import "bootswatch/dist/slate/bootstrap.min.css";
 import "./App.css";
 import { connect } from "react-redux";
+import SavedRecipes from "./components/SavedRecipes";
 
 class App extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class App extends React.Component {
           <SearchForm searchQuery={this.searchQuery} />
         </Route>
         <Route exact path="/recipe/:id" component={RecipeDetails} />
+        <Route exact path="/saved_recipes" component={SavedRecipes} />
       </div>
     );
   }

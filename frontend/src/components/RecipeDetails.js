@@ -36,7 +36,21 @@ class RecipeDetails extends React.Component {
       });
   }
 
-  postRecipeToDb = () => {};
+  postRecipeToDb(e, id) {
+    e.preventDefault();
+    console.log(id);
+    const recipe = {
+      recipe_id: id,
+    };
+    fetch(`http://localhost:3000/recipes`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipe),
+    }).then((res) => console.log(res));
+  }
 
   setRecipeToState = (recipe) => {
     recipe.extendedIngredients.map((ingredient) => {
@@ -95,7 +109,9 @@ class RecipeDetails extends React.Component {
                 <Card.Body>
                   <Card.Link href="#">
                     <button
-                      onClick={this.postRecipeToDb()}
+                      onClick={(e) =>
+                        this.postRecipeToDb(e, this.props.match.params.id)
+                      }
                       className="btn btn-primary"
                     >
                       Save This Recipe
