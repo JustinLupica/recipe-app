@@ -1,5 +1,4 @@
 import React from "react";
-import Recipes from "./Recipes";
 import { connect } from "react-redux";
 import { searchRecipe } from "../actions/searchRecipe";
 import { isRenderingRecipes } from "../actions/isRenderingRecipes";
@@ -10,22 +9,13 @@ class SearchForm extends React.Component {
     const searchBar = document.getElementById("search-bar").value;
     //REDUX CODE --
     this.props.searchQuery(searchBar);
-    {
-      /* Trigger a Toggle in the Global State to render out the Recipes Container when something has been searched */
-    }
+    // Trigger a Toggle in the Global State to render out the Recipes Container when something has been searched
     this.props.renderRecipes();
     //-------------
     e.target.reset();
   }
 
   render() {
-    // const renderRecipesComponent = () => {
-    //   if (this.props.query !== undefined) {
-    //     return <Recipes query={this.props.query} />;
-    //   } else {
-    //     return null;
-    //   }
-    // };
     return (
       <div>
         <div>

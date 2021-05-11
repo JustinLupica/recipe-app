@@ -1,16 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { mySavedRecipes } from "../actions/mySavedRecipes";
-import Recipe from "./Recipe";
+import RecipeCard from "./RecipeCard";
+import { removeRecipe } from "../actions/mySavedRecipes";
 
 class SavedRecipes extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      recipes: [],
-    };
-  }
-
   API_KEY = "142b402f15804516a38835cec56b9b54";
 
   componentDidMount() {
@@ -33,28 +27,13 @@ class SavedRecipes extends React.Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("API Fetch Call: ", data);
         this.setRecipesToState(data);
       });
   }
 
   setRecipesToState(recipes) {
     console.log("Recipes:", recipes);
-    // recipes.map((recipe) => {
-    //   this.setState({
-    //     recipes: [
-    //       ...this.state.recipes,
-    //       {
-    //         id: recipe.id,
-    //         title: recipe.title,
-    //         image: recipe.image,
-    //         healthScore: recipe.healthScore,
-    //         glutenFree: recipe.glutenFree,
-    //         vegan: recipe.vegan,
-    //       },
-    //     ],
-    //   });
-    // });
     //REDUX CODE:
     this.props.mySavedRecipes(recipes);
   }
@@ -63,16 +42,11 @@ class SavedRecipes extends React.Component {
     return (
       <div className="recipes">
         {this.props.myRecipes.map((recipe) => (
-          <Recipe
+          <RecipeCard
+            key={recipe.id}
+            recipe="saved-recipe"
             details={recipe[0]}
-            // id={recipe.id}
-            // key={recipe.id}
-            // title={recipe.title}
-            // image={recipe.image}
-            // // summary={recipe.summary}
-            // healthScore={recipe.healthScore}
-            // vegan={recipe.vegan}
-            // glutenFree={recipe.glutenFree}
+            removeRecipe={this.props.removeRecipe}
           />
         ))}
       </div>
@@ -84,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     mySavedRecipes: (recipes) => {
       dispatch(mySavedRecipes(recipes));
+    },
+    removeRecipe: (recipe) => {
+      dispatch(removeRecipe(recipe));
     },
   };
 };

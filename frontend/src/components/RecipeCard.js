@@ -3,17 +3,14 @@ import {
   faSeedling,
   faBreadSlice,
   faWeight,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ProgressBar, Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
-class Recipe extends React.Component {
-  constructor(props) {
-    super();
-  }
-
+class RecipeCard extends React.Component {
   postRecipeToDb(e, id) {
     e.preventDefault();
     console.log(id);
@@ -28,6 +25,12 @@ class Recipe extends React.Component {
       },
       body: JSON.stringify(recipe),
     }).then((res) => console.log(res));
+  }
+
+  removeRecipeFromDb(id) {
+    fetch(`http://localhost:3000/recipes/${id}`, {
+      method: "DELETE",
+    });
   }
 
   render() {
@@ -87,12 +90,24 @@ class Recipe extends React.Component {
               <button className="btn btn-primary">View Recipe</button>
             </Link>
             <Card.Link href="#">
-              <button
-                onClick={(e) => this.postRecipeToDb(e, this.props.details.id)}
-                className="btn btn-outline-info"
-              >
-                Save This Recipe
-              </button>
+              {this.props.recipe === "saved-recipe" ? (
+                <Button
+                  variant="danger"
+                  onClick={
+                    () => this.props.removeRecipe(this.props.details.id)
+                    // () => this.removeRecipeFromDb(this.props.details.id))
+                  }
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </Button>
+              ) : (
+                <Button
+                  variant="info"
+                  onClick={(e) => this.postRecipeToDb(e, this.props.details.id)}
+                >
+                  Save This Recipe
+                </Button>
+              )}
             </Card.Link>
           </div>
         </div>
@@ -107,4 +122,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Recipe);
+export default connect(mapStateToProps)(RecipeCard);

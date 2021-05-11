@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import Recipe from "./Recipe";
-// import { recipeResults } from "../actions/recipeResults";
+import RecipeCard from "./RecipeCard";
 import { fetchRecipes } from "../actions/recipeResults";
 
 class Recipes extends React.Component {
   API_KEY = "142b402f15804516a38835cec56b9b54";
 
   componentDidMount() {
-    // this.fetchRecipes(this.props.query);
     //Incorporating Thunk and calling dispatch in the actions
     this.props.fetchRecipes(this.props.query);
     console.log("Recipes Container Component Mounted");
@@ -24,7 +22,7 @@ class Recipes extends React.Component {
       <div className="recipes">
         {this.props.recipes !== undefined ? (
           this.props.recipes.map((recipe) => (
-            <Recipe key={recipe.id} details={recipe} />
+            <RecipeCard key={recipe.id} details={recipe} />
           ))
         ) : (
           <h1>

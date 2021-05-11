@@ -1,24 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import SearchForm from "./components/SearchForm";
+import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import RecipeDetails from "./components/RecipeDetails";
 import "bootswatch/dist/slate/bootstrap.min.css";
 import "./App.css";
 import { connect } from "react-redux";
 import SavedRecipes from "./components/SavedRecipes";
-import { searchRecipe } from "./actions/searchRecipe";
-import { search } from "./actions/searchRecipe";
 import Recipes from "./components/Recipes";
-import { Jumbotron } from "react-bootstrap";
 
 class App extends React.Component {
-  // searchQuery = (query) => {
-  //   this.setState({
-  //     query: query,
-  //   });
-  //   this.props.searchRecipe(query);
-  // };
   render() {
     return (
       <div className="App">

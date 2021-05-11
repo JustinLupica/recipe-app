@@ -4,3 +4,10 @@ export const mySavedRecipes = (recipes) => {
     recipes,
   };
 };
+
+export const removeRecipe = (recipe_id) => {
+  return {
+    type: "REMOVE_RECIPE",
+    recipe_id,
+  };
+};

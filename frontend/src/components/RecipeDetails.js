@@ -18,7 +18,6 @@ class RecipeDetails extends React.Component {
       instructions: [],
     };
   }
-
   API_KEY = "142b402f15804516a38835cec56b9b54";
 
   componentDidMount() {
@@ -26,12 +25,13 @@ class RecipeDetails extends React.Component {
   }
 
   fetchRecipe(id) {
+    console.log("Fetching");
     fetch(
       `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${this.API_KEY}`
     )
       .then((res) => res.json())
       .then((recipe) => {
-        console.log(recipe);
+        console.log("Recipe:", recipe);
         this.setRecipeToState(recipe);
       });
   }
