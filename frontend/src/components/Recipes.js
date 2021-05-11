@@ -1,72 +1,47 @@
 import React from "react";
+import { connect } from "react-redux";
 import Recipe from "./Recipe";
+// import { recipeResults } from "../actions/recipeResults";
+import { fetchRecipes } from "../actions/recipeResults";
 
 class Recipes extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      recipes: [],
-    };
-    console.log(props);
-  }
-
   API_KEY = "142b402f15804516a38835cec56b9b54";
 
   componentDidMount() {
-    this.fetchRecipes(this.props.query);
-  }
-
-  // componentDidUpdate() {
-  //   this.fetchRecipes(this.props.query);
-  // }
-
-  fetchRecipes(query, API_KEY) {
-    fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeInformation=true&apiKey=${this.API_KEY}&number=12`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        this.setRecipesToState(data.results);
-      });
+    // this.fetchRecipes(this.props.query);
+    //Incorporating Thunk and calling dispatch in the actions
+    this.props.fetchRecipes(this.props.query);
+    console.log("Recipes Container Component Mounted");
   }
 
   setRecipesToState(recipes) {
-    console.log(recipes);
-    recipes.map((recipe) => {
-      this.setState({
-        recipes: [
-          ...this.state.recipes,
-          {
-            id: recipe.id,
-            title: recipe.title,
-            image: recipe.image,
-            healthScore: recipe.healthScore,
-            glutenFree: recipe.glutenFree,
-            vegan: recipe.vegan,
-          },
-        ],
-      });
-    });
+    //REDUX CODE ---
+    this.props.recipeResults(recipes);
   }
 
   render() {
     return (
       <div className="recipes">
-        {this.state.recipes.map((recipe) => (
-          <Recipe
-            id={recipe.id}
-            key={recipe.id}
-            title={recipe.title}
-            image={recipe.image}
-            // summary={recipe.summary}
-            healthScore={recipe.healthScore}
-            vegan={recipe.vegan}
-            glutenFree={recipe.glutenFree}
-          />
-        ))}
+        {this.props.recipes !== undefined ? (
+          this.props.recipes.map((recipe) => (
+            <Recipe key={recipe.id} details={recipe} />
+          ))
+        ) : (
+          <h1>
+            We're Sorry. It looks like you have reached your daily limit of
+            queries. Please come back tomorrow
+          </h1>
+        )}
       </div>
     );
   }
 }
 
-export default Recipes;
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipeResults.recipeResults,
+    query: state.search.searchQuery,
+  };
+};
+
+export default connect(mapStateToProps, { fetchRecipes })(Recipes);

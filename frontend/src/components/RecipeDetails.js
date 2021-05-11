@@ -49,8 +49,13 @@ class RecipeDetails extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(recipe),
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      console.log(res);
+      this.showSuccessAlert();
+    });
   }
+
+  showSuccessAlert() {}
 
   setRecipeToState = (recipe) => {
     recipe.extendedIngredients.map((ingredient) => {

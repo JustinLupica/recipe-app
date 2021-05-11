@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
 class NavBar extends React.Component {
   render() {
@@ -7,7 +8,7 @@ class NavBar extends React.Component {
       <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
           <a class="navbar-brand" href="#">
-            Navbar
+            Recipes
           </a>
           <button
             class="navbar-toggler"
@@ -23,11 +24,12 @@ class NavBar extends React.Component {
 
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">
-                  Home
-                  <span class="sr-only">(current)</span>
-                </a>
+              <li class="nav-item">
+                <Link to={"/"}>
+                  <a class="nav-link" href="#">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li class="nav-item">
                 <Link to={"/saved_recipes"}>
@@ -35,16 +37,7 @@ class NavBar extends React.Component {
                 </Link>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input
-                class="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              />
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form>
+            <SearchForm />
           </div>
         </nav>
       </div>

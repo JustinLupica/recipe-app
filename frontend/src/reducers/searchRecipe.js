@@ -1,6 +1,13 @@
-export default function recipeReducer(state, action) {
+export default function searchRecipe(state = {}, action) {
   //switch
-  return state;
+  switch (action.type) {
+    case "SEARCH":
+      return {
+        searchQuery: action.query,
+      };
+    default:
+      return state;
+  }
   //recieves a previous state and action
   //return a newly updated state
   //reduce the previous state and action into a new state

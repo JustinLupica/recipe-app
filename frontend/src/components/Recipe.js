@@ -6,11 +6,28 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ProgressBar } from "react-bootstrap";
+import { ProgressBar, Card, Button } from "react-bootstrap";
+import { connect } from "react-redux";
 
 class Recipe extends React.Component {
   constructor(props) {
     super();
+  }
+
+  postRecipeToDb(e, id) {
+    e.preventDefault();
+    console.log(id);
+    const recipe = {
+      recipe_id: id,
+    };
+    fetch(`http://localhost:3000/recipes`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipe),
+    }).then((res) => console.log(res));
   }
 
   render() {
@@ -32,41 +49,51 @@ class Recipe extends React.Component {
     return (
       <div className="col-lg-3">
         <div className="card mb-3">
-          <img src={this.props.image} className="card-image" alt="..." />
+          <img
+            src={this.props.details.image}
+            className="card-image"
+            alt="..."
+          />
           <div className="card-body">
-            <h5 className="card-title">{this.props.title}</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <h5 className="card-title">{this.props.details.title}</h5>
+            <p className="card-text"></p>
             <ul className="list-group">
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                Vegan: {calculateVegan(this.props.vegan)}
+                Vegan: {calculateVegan(this.props.details.vegan)}
                 <span className="badge badge-primary badge-pill">
                   <FontAwesomeIcon icon={faSeedling} />
                 </span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                Gluten Free: {calculateGlutenFree(this.props.glutenFree)}
+                Gluten Free:{" "}
+                {calculateGlutenFree(this.props.details.glutenFree)}
                 <span className="badge badge-primary badge-pill">
                   <FontAwesomeIcon icon={faBreadSlice} />
                 </span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                HealthScore: {this.props.healthScore}/100
+                HealthScore: {this.props.details.healthScore}/100
                 <span className="badge badge-primary badge-pill">
                   <FontAwesomeIcon icon={faWeight} />
                 </span>
               </li>
               <ProgressBar
                 animated
-                now={this.props.healthScore}
-                label={this.props.healthScore}
+                now={this.props.details.healthScore}
+                label={this.props.details.healthScore}
               />
             </ul>
-            <Link to={`/recipe/${this.props.id}`}>
+            <Link to={`/recipe/${this.props.details.id}`}>
               <button className="btn btn-primary">View Recipe</button>
             </Link>
+            <Card.Link href="#">
+              <button
+                onClick={(e) => this.postRecipeToDb(e, this.props.details.id)}
+                className="btn btn-outline-info"
+              >
+                Save This Recipe
+              </button>
+            </Card.Link>
           </div>
         </div>
       </div>
@@ -74,4 +101,10 @@ class Recipe extends React.Component {
   }
 }
 
-export default Recipe;
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.search,
+  };
+};
+
+export default connect(mapStateToProps)(Recipe);

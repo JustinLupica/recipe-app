@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { mySavedRecipes } from "../actions/mySavedRecipes";
 import Recipe from "./Recipe";
 
 class SavedRecipes extends React.Component {
@@ -38,36 +40,39 @@ class SavedRecipes extends React.Component {
 
   setRecipesToState(recipes) {
     console.log("Recipes:", recipes);
-    recipes.map((recipe) => {
-      this.setState({
-        recipes: [
-          ...this.state.recipes,
-          {
-            id: recipe.id,
-            title: recipe.title,
-            image: recipe.image,
-            healthScore: recipe.healthScore,
-            glutenFree: recipe.glutenFree,
-            vegan: recipe.vegan,
-          },
-        ],
-      });
-    });
+    // recipes.map((recipe) => {
+    //   this.setState({
+    //     recipes: [
+    //       ...this.state.recipes,
+    //       {
+    //         id: recipe.id,
+    //         title: recipe.title,
+    //         image: recipe.image,
+    //         healthScore: recipe.healthScore,
+    //         glutenFree: recipe.glutenFree,
+    //         vegan: recipe.vegan,
+    //       },
+    //     ],
+    //   });
+    // });
+    //REDUX CODE:
+    this.props.mySavedRecipes(recipes);
   }
 
   render() {
     return (
       <div className="recipes">
-        {this.state.recipes.map((recipe) => (
+        {this.props.myRecipes.map((recipe) => (
           <Recipe
-            id={recipe.id}
-            key={recipe.id}
-            title={recipe.title}
-            image={recipe.image}
-            // summary={recipe.summary}
-            healthScore={recipe.healthScore}
-            vegan={recipe.vegan}
-            glutenFree={recipe.glutenFree}
+            details={recipe[0]}
+            // id={recipe.id}
+            // key={recipe.id}
+            // title={recipe.title}
+            // image={recipe.image}
+            // // summary={recipe.summary}
+            // healthScore={recipe.healthScore}
+            // vegan={recipe.vegan}
+            // glutenFree={recipe.glutenFree}
           />
         ))}
       </div>
@@ -75,4 +80,18 @@ class SavedRecipes extends React.Component {
   }
 }
 
-export default SavedRecipes;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    mySavedRecipes: (recipes) => {
+      dispatch(mySavedRecipes(recipes));
+    },
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    myRecipes: state.mySavedRecipes.mySavedRecipes,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavedRecipes);
