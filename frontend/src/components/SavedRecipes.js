@@ -5,7 +5,7 @@ import RecipeCard from "./RecipeCard";
 import { removeRecipe } from "../actions/mySavedRecipes";
 
 class SavedRecipes extends React.Component {
-  API_KEY = "142b402f15804516a38835cec56b9b54";
+  API_KEY = "c65a8e364b1b47438ce685a248fa2b6e";
 
   componentDidMount() {
     fetch("http://localhost:3000/recipes")
@@ -68,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     myRecipes: state.mySavedRecipes.mySavedRecipes,
+    count: state.count,
   };
 };
 

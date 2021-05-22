@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# My Recipes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Welcome to the My Recipes Application! Explore new recipes, view the instructions and ingredients details, and save the ones you like for later!
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+### Table of Contents
 
-### `yarn start`
+b
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [License](#license)
+- [Author Info](#author-info)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Welcome! This app can help you discover recipes and view the instructions and ingredients needed. You can also save recipes to a Rails Database for safe-keeping!
 
-### `yarn build`
+#### Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- React Router
+- React Bootstrap
+- Redux
+- Thunk
+- Ruby on Rails API (backend)
+- SQLite3 Database
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Back To The Top](#read-me-template)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+## How To Use
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Fork and Clone this repo to your machine.
+- run 'bundle install' to install all the project dependencies.
+- CD into the backend and start up the Rails server by running 'rails s'
+- CD back into the frontend and start up your React server by running 'npm start'
+- Have fun exploring the app!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### API Reference
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- This project gets it recipe data from the Spoonacular API, and this API limits daily requests to 150 per day.
 
-## Learn More
+[Back To The Top](#read-me-template)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+MIT License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Copyright (c) [2017] [James Q Quick]
 
-### Analyzing the Bundle Size
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-### Making a Progressive Web App
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[Back To The Top](#read-me-template)
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Author Info
 
-### Deployment
+- Twitter - [@Justin_Lupica](https://twitter.com/Justin_Lupica)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Back To The Top](#read-me-template)

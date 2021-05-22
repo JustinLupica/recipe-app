@@ -9,8 +9,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ProgressBar, Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { increment } from "../actions/increment";
 
 class RecipeCard extends React.Component {
+  handleClick(e, id) {
+    console.log(id);
+    e.preventDefault();
+    this.props.increment(id);
+  }
+
   postRecipeToDb(e, id) {
     e.preventDefault();
     console.log(id);
@@ -32,6 +39,19 @@ class RecipeCard extends React.Component {
       method: "DELETE",
     });
   }
+
+  // renderCounters() {
+  //   return this.props.count.map((value, i) => {
+  //     return (
+  //       <div>
+  //         <p>{value}</p>
+  //         <p>
+  //           <button onClick={() => this.props.increment(i)}> + </button>
+  //         </p>
+  //       </div>
+  //     );
+  //   });
+  // }
 
   render() {
     const calculateVegan = (vegan) => {
@@ -108,6 +128,12 @@ class RecipeCard extends React.Component {
                   Save This Recipe
                 </Button>
               )}
+              <button
+                onClick={() => this.props.increment(this.props.details.id)}
+              >
+                +
+              </button>
+              <span>{this.props.count}</span>
             </Card.Link>
           </div>
         </div>
@@ -116,10 +142,19 @@ class RecipeCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    recipes: state.search,
+    increment: (id) => {
+      dispatch(increment(id));
+    },
   };
 };
 
-export default connect(mapStateToProps)(RecipeCard);
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.search,
+    count: state.increment,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeCard);
