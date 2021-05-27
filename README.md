@@ -6,8 +6,6 @@
 
 ### Table of Contents
 
-b
-
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [License](#license)
